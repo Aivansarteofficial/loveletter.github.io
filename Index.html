@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ceb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Letter❤️</title>
+
+  <!-- Sweet Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: url('love.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    .letter {
+      background: rgba(255, 255, 255, 0.08); 
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 650px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease;
+      display: none;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      color: #ffcccc;
+      font-size: 36px;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .typing {
+      font-size: 20px;
+      line-height: 1.8;
+      color: #fff;
+      text-align: left;
+      border-right: 2px solid #ffcccc;
+      white-space: pre-line;
+      overflow: hidden;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .image {
+      margin: 15px 0;
+    }
+    .image img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+    }
+
+    .love-you {
+      margin-top: 25px;
+      font-size: 28px;
+      color: #ff99cc;
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+    }
+
+    .from {
+      font-size: 14px;
+      color: #ddd;
+      margin-top: 5px;
+      font-family: 'Dancing Script', cursive;
+      text-align: right;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    .intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      font-size: 32px;
+      font-weight: bold;
+      z-index: 10;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+    }
+    .intro span {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #ffcccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Message -->
+  <div class="intro" onclick="openLetter()">
+    Tap to Open 💌
+    <span>(Touch anywhere)</span>
+  </div>
+
+  <!-- Animated Hearts -->
+  <div class="heart" style="left:10%; animation-duration:7s;"></div>
+  <div class="heart" style="left:30%; animation-duration:9s;"></div>
+  <div class="heart" style="left:50%; animation-duration:6s;"></div>
+  <div class="heart" style="left:70%; animation-duration:8s;"></div>
+  <div class="heart" style="left:90%; animation-duration:10s;"></div>
+
+  <!-- Audio -->
+  <audio id="bg-music" loop>
+    <source src="new.mp4" type="audio/mp4">
+  </audio>
+  
+  <!-- Love Letter -->
+  <div class="letter" id="letter">
+    <h1>Jade Dabon 💌</h1>
+    <div class="image">
+      <img src="jade.jpg" alt="Love Image">
+    </div>
+    <p class="typing" id="typing"></p>
+    <p class="love-you">I LOVE YOU JADE ❤️😘</p>
+    <p class="from">From: Aivan Sarte</p>
+  </div>
+
+  <script>
+    const message = 
+`Hi Jade,
+Bisan dili ta magkita, gusto lang nako ipabati nimo nga ikaw ra gyud akong kalipay bisan pa wala pata nagka uyab, love gyapon tika ug andam tika huwaton. 
+Ikaw lang ang makapawala sa tanan nakong kapoy ug problema.
+
+Salamat sa imong gugma, sa imong pagsabot ug sa imong pag-atiman nako. 
+Bisan unsa pa’y mahitabo, ikaw ra gihapon akong pili-on, ikaw ra akong forever. ❤️`;
+
+    function openLetter() {
+      // hide intro
+      document.querySelector('.intro').style.display = 'none';
+
+      // play music
+      const audio = document.getElementById('bg-music');
+      audio.play();
+
+      // show letter
+      const letter = document.getElementById('letter');
+      letter.style.display = 'block';
+
+      // smooth fade & scale animation
+      setTimeout(() => {
+        letter.style.opacity = '1';
+        letter.style.transform = 'scale(1)';
+      }, 50);
+
+      // wait 1s before typing starts (matches CSS transition)
+      setTimeout(typeWriter, 1000);
+    }
+
+    let i = 0;
+    function typeWriter() {
+      if (i < message.length) {
+        document.getElementById("typing").textContent += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+  </script>
+</body>
+</html>
